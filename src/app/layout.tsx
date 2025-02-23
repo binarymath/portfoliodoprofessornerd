@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import type { Metadata } from "next";
+import type { Metadata } from "next/types";
 import { Geist, Geist_Mono } from "next/font/google";
 
 const geistSans = Geist({
