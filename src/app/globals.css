@@ -3,19 +3,32 @@
 @tailwind utilities;
 
 :root {
-  --background: linear-gradient(to right, #00000037, #ebe9e9);;
+  --background: #fff;
   --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #ffffff;
   }
 }
 
+/* Estilos aplicados ao body para usar as variáveis */
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Tema escuro manual */
+body.theme-dark {
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+}
+
+/* Tema claro manual */
+body.theme-light {
+  --background: #ffffff;
+  --foreground: #171717;
 }
