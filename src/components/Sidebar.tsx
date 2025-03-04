@@ -16,7 +16,11 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
     <>
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full transition-all duration-300 ease-in-out ${isOpen ? 'w-56' : 'w-16'} bg-gray-800 text-white transform ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
+        className={`fixed top-0 left-0 h-full transition-all duration-300 ease-in-out ${
+          isOpen ? 'w-56' : 'w-16'
+        } bg-gray-800 text-white transform ${
+          isOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
       >
         <div className="flex justify-between items-center p-4">
           {/* Título do Sidebar */}
@@ -40,12 +44,12 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
         <button
           onClick={toggleSidebar}
           className="absolute top-4 right-4 transform bg-gray-900 text-white p-3 rounded-full"
-          style={{ width: '40px', height: '40px' }} // Tamanho quadrado do botão
+          style={{ width: '40px', height: '40px' }}
         >
           <Image
             src={SetaIcon}
             alt="Toggle Sidebar"
-            className={`h-6 w-6 transform ${isOpen ? 'rotate-270' : ''} filter invert`} // Ajuste no tamanho da seta
+            className={`h-6 w-6 transform ${isOpen ? 'rotate-270' : ''} filter invert`}
           />
         </button>
       </div>
@@ -55,12 +59,12 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
         <button
           onClick={toggleSidebar}
           className="absolute top-4 right-4 transform bg-gray-900 text-white p-2 rounded-full flex justify-center items-center"
-          style={{ width: '30px', height: '30px' }} // Botão menor
+          style={{ width: '30px', height: '30px' }}
         >
           <Image
             src={SetaIcon}
             alt="Toggle Sidebar"
-            className={`h-6 w-6 transform ${isOpen ? 'rotate-180' : ''} filter invert`} // Ajuste no tamanho da seta
+            className={`h-4 w-4 transform ${isOpen ? 'rotate-180' : ''} filter invert`}
           />
         </button>
       )}
