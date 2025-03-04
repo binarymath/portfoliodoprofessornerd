@@ -86,8 +86,8 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
             />
           </svg>
         </button>
-            )}
-      )}
+            )
+      }
     </>
   );
 };
