@@ -19,20 +19,30 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
       >
         <div className="flex justify-between items-center p-4">
           {/* Título do Sidebar */}
-          <h2 className={`text-xl font-semibold ${isOpen ? 'block' : 'hidden'}`}>Navegação</h2>
+          <h2 className={`text-xl font-semibold ${isOpen ? 'block' : 'hidden'}`}>
+            Navegação
+          </h2>
         </div>
         {/* Itens do Sidebar */}
         <ul className="space-y-4 p-4">
-          <li><a href="#" className="block text-lg">Item 1</a></li>
-          <li><a href="#" className="block text-lg">Item 2</a></li>
-          <li><a href="#" className="block text-lg">Item 3</a></li>
-          <li><a href="#" className="block text-lg">Item 4</a></li>
+          <li>
+            <a href="#" className="block text-lg">Item 1</a>
+          </li>
+          <li>
+            <a href="#" className="block text-lg">Item 2</a>
+          </li>
+          <li>
+            <a href="#" className="block text-lg">Item 3</a>
+          </li>
+          <li>
+            <a href="#" className="block text-lg">Item 4</a>
+          </li>
         </ul>
 
         {/* Seta dentro do sidebar, posicionada no canto superior direito */}
         <button
           onClick={toggleSidebar}
-          className={`absolute top-4 right-4 transform bg-gray-900 text-white p-3 rounded-full`}
+          className="absolute top-4 right-4 transform bg-gray-900 text-white p-3 rounded-full"
           style={{ width: '40px', height: '40px' }} // Tamanho quadrado do botão
         >
           {/* Seta */}
@@ -41,7 +51,7 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            className={`h-6 w-6 transform text-white ${isOpen ? 'rotate-270' : ''}`} // Aplica rotação quando sidebar estiver aberto
+            className="h-6 w-6 transform text-white rotate-180"
           >
             <path
               strokeLinecap="round"
@@ -55,29 +65,27 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
 
       {/* Botão para abrir e fechar o sidebar, posicionado fora do sidebar quando fechado */}
       {!isOpen && (
-     <button
-     onClick={toggleSidebar}
-     className={`absolute top-4 right-4 transform bg-gray-900 text-white p-2 rounded-full flex justify-center items-center`} // Menor tamanho do botão
-     style={{ width: '30px', height: '30px' }} // Botão menor
-   >
-     {/* Seta */}
-     <svg
-       xmlns="http://www.w3.org/2000/svg"
-       fill="none"
-       viewBox="0 0 24 24"
-       stroke="currentColor"
-       className={`h-3 w-3 transform text-white ${isOpen ? 'rotate-270' : ''}`} // Seta menor
-     >
-       <path
-         strokeLinecap="round"
-         strokeLinejoin="round"
-         strokeWidth="5"
-         d="M9 5l7 7-7 7" // Setas para a esquerda e direita
-       />
-     </svg>
-   </button>
-   
-     
+        <button
+          onClick={toggleSidebar}
+          className="absolute top-4 left-4 transform bg-gray-900 text-white p-2 rounded-full flex justify-center items-center"
+          style={{ width: '30px', height: '30px' }} // Botão menor
+        >
+          {/* Seta */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            className="h-3 w-3 transform text-white"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M9 5l7 7-7 7" // Setas para a esquerda e direita
+            />
+          </svg>
+        </button>
       )}
     </>
   );
