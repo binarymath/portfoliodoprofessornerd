@@ -24,7 +24,7 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
       >
         <div className="flex justify-between items-center p-4">
           {/* Título do Sidebar */}
-          <h2 className={`text-xl font-semibold ${isOpen ? 'block' : 'hidden'}`}>Navegação</h2>
+          <h2 className={`text-xl font-semibold ${isOpen ? 'block' : 'hidden'}`}>Menu</h2>
         </div>
         {/* Itens do Sidebar */}
         <ul className="space-y-4 p-4">
