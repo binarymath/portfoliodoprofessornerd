@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect, useCallback } from "react";
-import Sidebar from '../../components/Sidebar';
 import React from 'react';
+import Navbar from '../../components/Navbar';
 
 // Interfaces para definir os tipos de dados usados no estado
 interface Multipliers {
@@ -21,7 +21,6 @@ const AulaCalculator: React.FC = () => {
   const [total, setTotal] = useState<number>(0);
   const [counts, setCounts] = useState<Counts>({});
   const [saturdayMultiplier, setSaturdayMultiplier] = useState<number>(0);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [nonTeachingDays, setNonTeachingDays] = useState<number>(0);
   const weekDays: string[] = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"];
 
@@ -86,15 +85,10 @@ const AulaCalculator: React.FC = () => {
     setCounts(counts);
   }, [startDate, endDate, multipliers, saturdayMultiplier, nonTeachingDays, calculateDays]);
 
-  // Função para alternar a visibilidade da sidebar
-  const toggleSidebar = (): void => {
-    setIsOpen(!isOpen);
-  };
-
   return (
-    <div className="flex min-h-screen">
-      <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
-      <div className={`flex-1 p-6 max-w-4xl mx-auto mt-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg shadow-md transition-all duration-300 ease-in-out ${isOpen ? 'ml-56' : 'ml-16'}`}>
+    <div>
+      <div className="mb-12"><Navbar /></div> 
+      <div className="flex-1 p-6 max-w-4xl mx-auto mt-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg shadow-md transition-all duration-300 ease-in-out">
         <h2 className="text-3xl font-bold mb-6 text-center text-white">Calculadora de Aulas</h2>
         <div className="grid gap-6 md:grid-cols-2">
           <div>
@@ -141,37 +135,37 @@ const AulaCalculator: React.FC = () => {
             </div>
           </div>
 
-        <div className="col-span-2 flex flex-col items-center mt-4 md:flex-row md:justify-around w-full">
-          <div className="col-span-2 flex flex-col items-center mt-6 w-full max-w-sm">
-            <h3 className="text-lg font-semibold mb-4 text-white">Sábado Letivo</h3>
-            <div className="flex flex-col items-center border border-gray-300 p-4 rounded-md bg-white bg-opacity-20 w-full">
-              <span className="text-sm font-medium text-white mb-2">Sábado</span>
-              <select
-                onChange={(e) => handleSaturdayMultiplierChange(Number(e.target.value))}
-                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                {[...Array(11).keys()].map(num => (
-                  <option key={num} value={num}>{num}</option>
-                ))}
-              </select>
+          <div className="col-span-2 flex flex-col items-center mt-4 md:flex-row md:justify-around w-full">
+            <div className="col-span-2 flex flex-col items-center mt-6 w-full max-w-sm">
+              <h3 className="text-lg font-semibold mb-4 text-white">Sábado Letivo</h3>
+              <div className="flex flex-col items-center border border-gray-300 p-4 rounded-md bg-white bg-opacity-20 w-full">
+                <span className="text-sm font-medium text-white mb-2">Sábado</span>
+                <select
+                  onChange={(e) => handleSaturdayMultiplierChange(Number(e.target.value))}
+                  className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  {[...Array(11).keys()].map(num => (
+                    <option key={num} value={num}>{num}</option>
+                  ))}
+                </select>
+              </div>
             </div>
-          </div>
 
-          <div className="col-span-2 flex flex-col items-center mt-6 w-full max-w-sm">
-            <h3 className="text-lg font-semibold mb-4 text-white">Quantidade de aulas não letivas</h3>
-            <div className="flex flex-col items-center border border-gray-300 p-4 rounded-md bg-white bg-opacity-20 w-full">
-              <span className="text-sm font-medium text-white mb-2">Aulas não letivas</span>
-              <select
-                onChange={(e) => handleNonTeachingDaysChange(Number(e.target.value))}
-                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                {[...Array(11).keys()].map(num => (
-                  <option key={num} value={num}>{num}</option>
-                ))}
-              </select>
+            <div className="col-span-2 flex flex-col items-center mt-6 w-full max-w-sm">
+              <h3 className="text-lg font-semibold mb-4 text-white">Quantidade de aulas não letivas</h3>
+              <div className="flex flex-col items-center border border-gray-300 p-4 rounded-md bg-white bg-opacity-20 w-full">
+                <span className="text-sm font-medium text-white mb-2">Aulas não letivas</span>
+                <select
+                  onChange={(e) => handleNonTeachingDaysChange(Number(e.target.value))}
+                  className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  {[...Array(11).keys()].map(num => (
+                    <option key={num} value={num}>{num}</option>
+                  ))}
+                </select>
+              </div>
             </div>
           </div>
-        </div>
 
           <div className="col-span-2 text-lg font-semibold text-center mt-6 text-white">
             <span>Total de Aulas: </span><span className="text-yellow-300">{total}</span>
