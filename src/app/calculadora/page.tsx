@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Sidebar from '../../components/Sidebar';
 
 export default function AulaCalculator() {
@@ -28,7 +28,7 @@ export default function AulaCalculator() {
     }));
   };
 
-  const calculateDays = () => {
+  const calculateDays = useCallback(() => {
     if (!startDate || !endDate) return { total: 0, counts: {}, nonTeaching: 0 };
 
     if (new Date(startDate) > new Date(endDate)) {
@@ -42,7 +42,6 @@ export default function AulaCalculator() {
     const end = new Date(endDate);
     const counts: { [key: number]: number } = {};
     let total = 0;
-    let nonTeaching = 0;
 
     for (let d = start; d <= end; d.setDate(d.getDate() + 1)) {
       const day = d.getDay();
@@ -62,13 +61,13 @@ export default function AulaCalculator() {
     total -= nonTeachingDays[0] + nonTeachingDays[6];
 
     return { total, counts };
-  };
+  }, [startDate, endDate, multipliers, nonTeachingDays]);
 
   useEffect(() => {
     const { total, counts } = calculateDays();
     setTotal(total);
     setCounts(counts);
-  }, [startDate, endDate, multipliers, nonTeachingDays]);
+  }, [startDate, endDate, multipliers, nonTeachingDays, calculateDays]);
 
   const toggleSidebar = (): void => {
     setIsOpen(!isOpen);
