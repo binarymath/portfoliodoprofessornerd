@@ -28,8 +28,10 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
         </div>
         {/* Itens do Sidebar */}
         <ul className="space-y-4 p-4">
-          
-          
+            <li className="flex items-center hover:bg-gray-700 p-2 rounded">
+            <Image src={homeIcon} alt="Home" className="w-6 h-6 mr-2 filter invert" />
+            <a href="/" className="block text-sm">Home</a>
+            </li>
           <li className="flex items-center hover:bg-gray-700 p-2 rounded">
             <Image src={calculadoraIcon} alt="Calculator" className="w-6 h-6 mr-2 filter invert" />
             <a href="/calculadora" className={`block text-sm ${isOpen ? 'block' : 'hidden'}`}>Calculadora de aulas</a>
