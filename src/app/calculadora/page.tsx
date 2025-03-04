@@ -29,11 +29,11 @@ export default function AulaCalculator() {
   };
 
   const calculateDays = useCallback(() => {
-    if (!startDate || !endDate) return { total: 0, counts: {}, nonTeaching: 0 };
+    if (!startDate || !endDate) return { total: 0, counts: {} };
 
     if (new Date(startDate) > new Date(endDate)) {
       setErrorMessage("A data de início não pode ser posterior à data de término.");
-      return { total: 0, counts: {}, nonTeaching: 0 };
+      return { total: 0, counts: {} };
     } else {
       setErrorMessage("");
     }
