@@ -23,7 +23,7 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
         </div>
         {/* Itens do Sidebar */}
         <ul className="space-y-4 p-4">
-          <li><a href="#" className="block text-lg">Item 1</a></li>
+          <li><a href="https://portfoliodoprofessornerd.vercel.app/" className="block text-lg">Home</a></li>
           <li><a href="#" className="block text-lg">Item 2</a></li>
           <li><a href="#" className="block text-lg">Item 3</a></li>
           <li><a href="#" className="block text-lg">Item 4</a></li>
