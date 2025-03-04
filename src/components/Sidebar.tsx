@@ -1,6 +1,7 @@
 'use client';
 import { FC } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import homeIcon from '../assets/icons/casa.png';
 import calculadoraIcon from '../assets/icons/calculadora.ico';
 import SetaIcon from '../assets/icons/seta.svg';
@@ -29,14 +30,14 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
         <ul className="space-y-4 p-4">
           <li className="flex items-center hover:bg-gray-700 p-2 rounded">
             <Image src={homeIcon} alt="Home" className="w-6 h-6 mr-2 filter invert" />
-            <a href="/" className="block text-sm">Home</a>
+            <Link href="/" className="block text-sm">Home</Link>
           </li>
           <li className="flex items-center hover:bg-gray-700 p-2 rounded">
             <Image src={calculadoraIcon} alt="Calculator" className="w-6 h-6 mr-2 filter invert" />
-            <a href="/calculadora" className={`block text-sm ${isOpen ? 'block' : 'hidden'}`}>Calculadora de aulas</a>
+            <Link href="/calculadora" className={`block text-sm ${isOpen ? 'block' : 'hidden'}`}>Calculadora de aulas</Link>
           </li>
-          <li className="hover:bg-gray-700 p-2 rounded"><a href="#" className="block text-lg">Item 3</a></li>
-          <li className="hover:bg-gray-700 p-2 rounded"><a href="#" className="block text-lg">Item 4</a></li>
+          <li className="hover:bg-gray-700 p-2 rounded"><Link href="#" className="block text-lg">Item 3</Link></li>
+          <li className="hover:bg-gray-700 p-2 rounded"><Link href="#" className="block text-lg">Item 4</Link></li>
         </ul>
 
         {/* Seta dentro do sidebar, posicionada no canto superior direito */}
