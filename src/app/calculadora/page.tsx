@@ -53,8 +53,8 @@ export default function AulaCalculator() {
     total = Object.keys(counts).reduce((sum, key) => {
       const day = Number(key);
       const multiplier = multipliers[day] || 0;
-      const dayCount = day === 6 ? (counts[day] > 0 ? 1 : 0) : (counts[day] || 0); // Garante que sábado tenha apenas 0 ou 1 dia
-      return sum + dayCount * multiplier;
+      const dayCount = day === 6 ? (counts[day] > 0 ? 0 : 1) : counts[day]; // Garante que sábado tenha apenas 0 ou 1 dia
+      return sum + (dayCount > 0 ? 1 : 0) * multiplier;
     }, 0);
 
     // Subtrai os dias não letivos do total
