@@ -77,20 +77,21 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
           style={{ width: '30px', height: '30px' }} // Botão menor
         >
           {/* Seta */}
-          <svg
+            <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
-            viewBox="0 24 24"
+            viewBox="0 0 24 24"
             stroke="currentColor"
             className="h-3 w-3 transform text-white"
-          >
+            style={{ margin: 'auto' }} // Centraliza a seta no background
+            >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="5"
               d="M9 5l7 7-7 7" // Seta para a direita
             />
-          </svg>
+            </svg>
         </button>
       )}
     </>
