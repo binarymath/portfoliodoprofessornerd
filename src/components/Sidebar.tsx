@@ -1,5 +1,8 @@
 'use client';
 import { FC } from 'react';
+import Image from 'next/image';
+import homeIcon from '../assets/icons/casa.png';
+import calculadoraIcon from '../assets/icons/calculadora.ico';
 
 interface SidebarProps {
   isOpen: boolean; // Estado para saber se o sidebar está aberto ou fechado
@@ -23,8 +26,16 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
         </div>
         {/* Itens do Sidebar */}
         <ul className="space-y-4 p-4">
-          <li><a href="https://portfoliodoprofessornerd.vercel.app/" className="block text-lg">Home</a></li>
-          <li><a href="#" className="block text-lg">Item 2</a></li>
+            <li className="flex items-center">
+              <Image src={homeIcon} alt="Home" className="w-6 h-6 mr-2 filter invert" />
+              <a href="/" className="block text-lg">Home</a>
+            </li>
+           
+            <li className="flex items-center">
+            <Image src={calculadoraIcon} alt="Calculator" className="w-6 h-6 mr-2 filter invert" />
+            <a href="/calculadora" className="block text-lg">Calculadora</a>
+          
+            </li>
           <li><a href="#" className="block text-lg">Item 3</a></li>
           <li><a href="#" className="block text-lg">Item 4</a></li>
         </ul>
