@@ -1,6 +1,7 @@
 'use client';
 import { FC } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import homeIcon from '../assets/icons/casa.png';
 import calculadoraIcon from '../assets/icons/calculadora.ico';
 import SetaIcon from '../assets/icons/seta.svg';
@@ -29,14 +30,14 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
         <ul className="space-y-4 p-4">
           <li className="flex items-center hover:bg-gray-700 p-2 rounded">
             <Image src={homeIcon} alt="Home" className="w-6 h-6 mr-2 filter invert" />
-            <a href="/" className="block text-sm">Home</a>
+            <Link href="/" className="block text-sm">Home</Link>
           </li>
           <li className="flex items-center hover:bg-gray-700 p-2 rounded">
             <Image src={calculadoraIcon} alt="Calculator" className="w-6 h-6 mr-2 filter invert" />
-            <a href="/calculadora" className={`block text-sm ${isOpen ? 'block' : 'hidden'}`}>Calculadora de aulas</a>
+            <Link href="/calculadora" className={`block text-sm ${isOpen ? 'block' : 'hidden'}`}>Calculadora de aulas</Link>
           </li>
-          <li className="hover:bg-gray-700 p-2 rounded"><a href="#" className="block text-lg">Item 3</a></li>
-          <li className="hover:bg-gray-700 p-2 rounded"><a href="#" className="block text-lg">Item 4</a></li>
+          <li className="hover:bg-gray-700 p-2 rounded"><Link href="#" className="block text-lg">Item 3</Link></li>
+          <li className="hover:bg-gray-700 p-2 rounded"><Link href="#" className="block text-lg">Item 4</Link></li>
         </ul>
 
         {/* Seta dentro do sidebar, posicionada no canto superior direito */}
@@ -45,12 +46,12 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
           className={`absolute top-4 right-4 transform bg-gray-900 text-white p-3 rounded-full`}
           style={{ width: '40px', height: '40px' }} // Tamanho quadrado do botão
         >
-            <Image
+          <Image
             src={SetaIcon}
             alt="Toggle Sidebar"
             className={`h-24 w-24 transform ${isOpen ? 'rotate-270' : ''} filter invert`} // Aumenta a altura e largura da seta para 24px e inverte a cor para branco
-            />
-          </button>
+          />
+        </button>
       </div>
 
       {/* Botão para abrir e fechar o sidebar, posicionado fora do sidebar quando fechado */}
@@ -60,12 +61,11 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
           className={`absolute top-4 right-4 transform bg-gray-900 text-white p-2 rounded-full flex justify-center items-center`} // Menor tamanho do botão
           style={{ width: '30px', height: '30px' }} // Botão menor
         >
-          {/* Seta */}
           <Image
             src={SetaIcon}
             alt="Toggle Sidebar"
             className={`h-24 w-24 transform ${isOpen ? 'rotate-180' : ''} filter invert`} // Aumenta a altura e largura da seta para 24px e inverte a cor para branco
-            />
+          />
         </button>
       )}
     </>
