@@ -42,29 +42,30 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
         {/* Seta dentro do sidebar, posicionada no canto superior direito */}
         <button
           onClick={toggleSidebar}
-          className={`absolute top-4 right-4 transform text-white p-3 rounded-full`}
-          style={{ width: '50px', height: '50px' }}
+          className={`absolute top-4 right-4 transform bg-gray-900 text-white p-3 rounded-full`}
+          style={{ width: '40px', height: '40px' }} // Tamanho quadrado do botão
         >
-          <Image
+            <Image
             src={SetaIcon}
             alt="Toggle Sidebar"
-            className={`h-8 w-8 transform ${isOpen ? 'rotate-270' : ''} filter invert`}
-          />
-        </button>
+            className={`h-24 w-24 transform ${isOpen ? 'rotate-270' : ''} filter invert`} // Aumenta a altura e largura da seta para 24px e inverte a cor para branco
+            />
+          </button>
       </div>
 
       {/* Botão para abrir e fechar o sidebar, posicionado fora do sidebar quando fechado */}
       {!isOpen && (
         <button
           onClick={toggleSidebar}
-          className={`absolute top-4 right-4 transform text-white p-2 rounded-full flex justify-center items-center bg-blue-900 bg-opacity-50`}
-          style={{ width: '40px', height: '40px' }}
+          className={`absolute top-4 right-4 transform bg-gray-900 text-white p-2 rounded-full flex justify-center items-center`} // Menor tamanho do botão
+          style={{ width: '30px', height: '30px' }} // Botão menor
         >
+          {/* Seta */}
           <Image
             src={SetaIcon}
             alt="Toggle Sidebar"
-            className={`h-8 w-8 transform rotate-0 filter invert-0`}
-          />
+            className={`h-24 w-24 transform ${isOpen ? 'rotate-180' : ''} filter invert`} // Aumenta a altura e largura da seta para 24px e inverte a cor para branco
+            />
         </button>
       )}
     </>
