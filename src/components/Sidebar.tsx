@@ -3,6 +3,7 @@ import { FC } from 'react';
 import Image from 'next/image';
 import homeIcon from '../assets/icons/casa.png';
 import calculadoraIcon from '../assets/icons/calculadora.ico';
+import SetaIcon from '../assets/icons/seta.svg';
 
 interface SidebarProps {
   isOpen: boolean; // Estado para saber se o sidebar está aberto ou fechado
@@ -26,69 +27,46 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
         </div>
         {/* Itens do Sidebar */}
         <ul className="space-y-4 p-4">
-            <li className="flex items-center">
-              <Image src={homeIcon} alt="Home" className="w-6 h-6 mr-2 filter invert" />
-              <a href="/" className="block text-md">Home</a>
-            </li>
-           
-            <li className="flex items-center"> 
-              <Image src={calculadoraIcon} alt="Calculator" className="w-6 h-6 mr-2 filter invert" />
-              <a href="/calculadora" className={`block text-md ${isOpen ? 'block' : 'hidden'}`}>Calculadora de aulas</a>
-            </li>
-
-          <li><a href="#" className="block text-lg">Item 3</a></li>
-          <li><a href="#" className="block text-lg">Item 4</a></li>
+          <li className="flex items-center hover:bg-gray-700 p-2 rounded">
+            <Image src={homeIcon} alt="Home" className="w-6 h-6 mr-2 filter invert" />
+            <a href="/" className="block text-sm">Home</a>
+          </li>
+          <li className="flex items-center hover:bg-gray-700 p-2 rounded">
+            <Image src={calculadoraIcon} alt="Calculator" className="w-6 h-6 mr-2 filter invert" />
+            <a href="/calculadora" className={`block text-sm ${isOpen ? 'block' : 'hidden'}`}>Calculadora de aulas</a>
+          </li>
+          <li className="hover:bg-gray-700 p-2 rounded"><a href="#" className="block text-lg">Item 3</a></li>
+          <li className="hover:bg-gray-700 p-2 rounded"><a href="#" className="block text-lg">Item 4</a></li>
         </ul>
 
         {/* Seta dentro do sidebar, posicionada no canto superior direito */}
         <button
           onClick={toggleSidebar}
-          className={`absolute top-4 right-4 transform bg-gray-900 text-white p-3 rounded-full`}
-          style={{ width: '40px', height: '40px' }} // Tamanho quadrado do botão
+          className={`absolute top-4 right-4 transform text-white p-3 rounded-full`}
+          style={{ width: '50px', height: '50px' }}
         >
-          {/* Seta */}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            className={`h-6 w-6 transform text-white ${isOpen ? 'rotate-270' : ''}`} // Aplica rotação quando sidebar estiver aberto
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M15 19l-7-7 7-7" // Setas para a esquerda e direita
-            />
-          </svg>
+          <Image
+            src={SetaIcon}
+            alt="Toggle Sidebar"
+            className={`h-8 w-8 transform ${isOpen ? 'rotate-270' : ''} filter invert`}
+          />
         </button>
       </div>
 
       {/* Botão para abrir e fechar o sidebar, posicionado fora do sidebar quando fechado */}
-      {!isOpen && (
-     <button
-     onClick={toggleSidebar}
-     className={`absolute top-4 right-4 transform bg-gray-900 text-white p-2 rounded-full flex justify-center items-center`} // Menor tamanho do botão
-     style={{ width: '30px', height: '30px' }} // Botão menor
-   >
-     {/* Seta */}
-     <svg
-       xmlns="http://www.w3.org/2000/svg"
-       fill="none"
-       viewBox="0 0 24 24"
-       stroke="currentColor"
-       className={`h-3 w-3 transform text-white ${isOpen ? 'rotate-270' : ''}`} // Seta menor
-     >
-       <path
-         strokeLinecap="round"
-         strokeLinejoin="round"
-         strokeWidth="5"
-         d="M9 5l7 7-7 7" // Setas para a esquerda e direita
-       />
-     </svg>
-   </button>
-   
-     
+        {!isOpen && (
+            <button
+            onClick={toggleSidebar}
+            className={`fixed bottom-10 right-10 transform text-white p-2 rounded-full flex justify-center items-center bg-blue-900 bg-opacity-50`}
+            style={{ width: '40px', height: '40px' }}
+            >
+            <Image
+              src={SetaIcon}
+              alt="Toggle Sidebar"
+              className={`h-8 w-8 transform transition-transform duration-300 ${isOpen ? 'rotate-270' : 'rotate-180'} filter invert`}
+            />
+            </button>
+        )}
       )}
     </>
   );
