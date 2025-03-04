@@ -31,17 +31,17 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
         <ul className="space-y-4 p-4">
           <li className="flex items-center space-x-2">
             <Image src={casaIcon} alt="Home Icon" width={24} height={24} className="filter invert" />
-            <Link href="/" className="block text-md">Home</Link>
+            <Link href="/" className={`block text-md ${!isOpen ? 'hidden' : ''}`}>Home</Link>
           </li>
           <li className="flex items-center space-x-2">
             <Image src={calculadoraIcon} alt="Calculadora Icon" width={24} height={24} className="filter invert" />
-            <Link href="/calculadora" className="block text-md">Calculadora</Link>
+            <Link href="/calculadora" className={`block text-md ${!isOpen ? 'hidden' : ''}`}>Calculadora</Link>
           </li>
           <li>
-            <Link href="#" className="block text-lg">Item 3</Link>
+            <Link href="#" className={`block text-lg ${!isOpen ? 'hidden' : ''}`}>Item 3</Link>
           </li>
           <li>
-            <Link href="#" className="block text-lg">Item 4</Link>
+            <Link href="#" className={`block text-lg ${!isOpen ? 'hidden' : ''}`}>Item 4</Link>
           </li>
         </ul>
 
