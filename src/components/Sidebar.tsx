@@ -1,9 +1,9 @@
 'use client';
 import { FC } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import casaIcon from '../assets/icons/casa.png';
 import calculadoraIcon from '../assets/icons/calculadora.ico';
-
 
 interface SidebarProps {
   isOpen: boolean; // Estado para saber se o sidebar está aberto ou fechado
@@ -29,23 +29,19 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
         </div>
         {/* Itens do Sidebar */}
         <ul className="space-y-4 p-4">
-
-        <li className="flex items-center space-x-2">
-          <Image src={casaIcon} alt="Home Icon" width={24} height={24} className="filter invert" />
-          <a href="/" className="block text-md  ">Home</a>
-        </li>
-        
-        <li className="flex items-center space-x-2">
-          <Image src={calculadoraIcon} alt="Home Icon" width={24} height={24} className="filter invert" />
-          <a href="/calculadora" className="block text-md  ">Calculadora</a>
-        </li>
-
-
-          <li>
-            <a href="#" className="block text-lg">Item 3</a>
+          <li className="flex items-center space-x-2">
+            <Image src={casaIcon} alt="Home Icon" width={24} height={24} className="filter invert" />
+            <Link href="/" className="block text-md">Home</Link>
+          </li>
+          <li className="flex items-center space-x-2">
+            <Image src={calculadoraIcon} alt="Calculadora Icon" width={24} height={24} className="filter invert" />
+            <Link href="/calculadora" className="block text-md">Calculadora</Link>
           </li>
           <li>
-            <a href="#" className="block text-lg">Item 4</a>
+            <Link href="#" className="block text-lg">Item 3</Link>
+          </li>
+          <li>
+            <Link href="#" className="block text-lg">Item 4</Link>
           </li>
         </ul>
 
@@ -62,7 +58,8 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
             viewBox="0 0 24 24"
             stroke="currentColor"
             className="h-6 w-6 transform text-white"
-          >          <path
+          >
+            <path
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth="3"
@@ -70,10 +67,10 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
             />
           </svg>
         </button>
-            </div>
+      </div>
 
-            {/* Botão para abrir e fechar o sidebar, posicionado fora do sidebar quando fechado */}
-            {!isOpen && (
+      {/* Botão para abrir e fechar o sidebar, posicionado fora do sidebar quando fechado */}
+      {!isOpen && (
         <button
           onClick={toggleSidebar}
           className="absolute top-4 left-4 transform bg-gray-900 text-white p-2 rounded-full flex justify-center items-center"
@@ -83,7 +80,7 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
-            viewBox="0 0 24 24"
+            viewBox="0 24 24"
             stroke="currentColor"
             className="h-3 w-3 transform text-white"
           >
@@ -95,8 +92,7 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
             />
           </svg>
         </button>
-            )
-      }
+      )}
     </>
   );
 };
