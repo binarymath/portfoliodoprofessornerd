@@ -51,20 +51,20 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            className="h-6 w-6 transform text-white rotate-180"
+            className="h-6 w-6 transform text-white"
           >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth="2"
-              d="M15 19l-7-7 7-7" // Setas para a esquerda e direita
+              strokeWidth="5"
+              d="M15 19l-7-7 7-7" // Seta para a esquerda
             />
           </svg>
         </button>
-      </div>
+            </div>
 
-      {/* Botão para abrir e fechar o sidebar, posicionado fora do sidebar quando fechado */}
-      {!isOpen && (
+            {/* Botão para abrir e fechar o sidebar, posicionado fora do sidebar quando fechado */}
+            {!isOpen && (
         <button
           onClick={toggleSidebar}
           className="absolute top-4 left-4 transform bg-gray-900 text-white p-2 rounded-full flex justify-center items-center"
@@ -81,11 +81,12 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth="2"
-              d="M9 5l7 7-7 7" // Setas para a esquerda e direita
+              strokeWidth="5"
+              d="M9 5l7 7-7 7" // Seta para a direita
             />
           </svg>
         </button>
+            )}
       )}
     </>
   );
