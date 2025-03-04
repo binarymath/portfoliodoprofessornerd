@@ -28,14 +28,14 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
         <ul className="space-y-4 p-4">
             <li className="flex items-center">
               <Image src={homeIcon} alt="Home" className="w-6 h-6 mr-2 filter invert" />
-              <a href="/" className="block text-lg">Home</a>
+              <a href="/" className="block text-md">Home</a>
             </li>
            
-            <li className="flex items-center">
-            <Image src={calculadoraIcon} alt="Calculator" className="w-6 h-6 mr-2 filter invert" />
-            <a href="/calculadora" className="block text-lg">Calculadora</a>
-          
+            <li className="flex items-center"> 
+              <Image src={calculadoraIcon} alt="Calculator" className="w-6 h-6 mr-2 filter invert" />
+              <a href="/calculadora" className={`block text-md ${isOpen ? 'block' : 'hidden'}`}>Calculadora de aulas</a>
             </li>
+
           <li><a href="#" className="block text-lg">Item 3</a></li>
           <li><a href="#" className="block text-lg">Item 4</a></li>
         </ul>
