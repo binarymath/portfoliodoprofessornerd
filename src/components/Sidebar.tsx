@@ -16,11 +16,7 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
     <>
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full transition-all duration-300 ease-in-out ${
-          isOpen ? 'w-56' : 'w-16' // Ajusta a largura do sidebar com base no estado
-        } bg-gray-800 text-white transform ${
-          isOpen ? 'translate-x-0' : '-translate-x-full' // Controla o slide do sidebar
-        }`}
+        className={`fixed top-0 left-0 h-full transition-all duration-300 ease-in-out ${isOpen ? 'w-56' : 'w-16'} bg-gray-800 text-white transform ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
       >
         <div className="flex justify-between items-center p-4">
           {/* Título do Sidebar */}
