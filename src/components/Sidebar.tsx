@@ -1,7 +1,6 @@
 'use client';
 import { FC } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import homeIcon from '../assets/icons/casa.png';
 import calculadoraIcon from '../assets/icons/calculadora.ico';
 import SetaIcon from '../assets/icons/seta.svg';
@@ -43,7 +42,7 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
         {/* Seta dentro do sidebar, posicionada no canto superior direito */}
         <button
           onClick={toggleSidebar}
-          className={`absolute top-4 right-4 transform bg-gray-900 text-white p-3 rounded-full`}
+          className={`absolute top-4 right-4 transform bg-gray-900 text-white p-3 rounded-full shadow-lg hover:bg-gray-700 transition-all duration-300`}
           style={{ width: '40px', height: '40px' }} // Tamanho quadrado do botão
         >
             <Image
