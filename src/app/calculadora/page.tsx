@@ -1,33 +1,45 @@
 'use client';
 import { useState, useEffect, useCallback } from "react";
 import Sidebar from '../../components/Sidebar';
+import React from 'react';
 
-export default function AulaCalculator() {
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [multipliers, setMultipliers] = useState<{ [key: number]: number }>({});
-  const [errorMessage, setErrorMessage] = useState("");
-  const [total, setTotal] = useState(0);
-  const [counts, setCounts] = useState<{ [key: number]: number }>({});
-  const [nonTeachingDays, setNonTeachingDays] = useState<{ [key: number]: number }>({
-    0: 0, // Domingo
-    6: 0, // Sábado
-  });
+// Interfaces para definir os tipos de dados usados no estado
+interface Multipliers {
+  [key: number]: number;
+}
+
+interface Counts {
+  [key: number]: number;
+}
+
+const AulaCalculator: React.FC = () => {
+  // Estados para armazenar as datas de início e término, multiplicadores, mensagens de erro, total de aulas e contagem de dias
+  const [startDate, setStartDate] = useState<string>("");
+  const [endDate, setEndDate] = useState<string>("");
+  const [multipliers, setMultipliers] = useState<Multipliers>({});
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [total, setTotal] = useState<number>(0);
+  const [counts, setCounts] = useState<Counts>({});
+  const [saturdayMultiplier, setSaturdayMultiplier] = useState<number>(0);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [nonTeachingDays, setNonTeachingDays] = useState<number>(0);
+  const weekDays: string[] = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"];
 
-  const weekDays = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
-
+  // Função para atualizar os multiplicadores
   const handleMultiplierChange = (day: number, value: number) => {
-    setMultipliers((prev) => ({ ...prev, [day]: value }));
+    setMultipliers((prev: Multipliers) => ({ ...prev, [day]: value }));
   };
 
-  const handleNonTeachingDayChange = (day: number, value: number) => {
-    setNonTeachingDays((prev) => ({
-      ...prev,
-      [day]: value,
-    }));
+  // Função para atualizar o multiplicador do sábado
+  const handleSaturdayMultiplierChange = (value: number) => {
+    setSaturdayMultiplier(value);
   };
 
+  const handleNonTeachingDaysChange = (value: number) => {
+    setNonTeachingDays(value);
+  };
+
+  // Função para calcular os dias de aula
   const calculateDays = useCallback(() => {
     if (!startDate || !endDate) return { total: 0, counts: {} };
 
@@ -40,35 +52,41 @@ export default function AulaCalculator() {
 
     const start = new Date(startDate);
     const end = new Date(endDate);
-    const counts: { [key: number]: number } = {};
+    const counts: Counts = {};
     let total = 0;
 
+    // Conta os dias de cada dia da semana entre as datas de início e término
     for (let d = start; d <= end; d.setDate(d.getDate() + 1)) {
       const day = d.getDay();
-      // Ignora domingos de acordo com a configuração dos dias não letivos
-      if (day === 0 && nonTeachingDays[0] > 0) continue; // Ignora domingo se marcado como não letivo
+      if (day === 6) continue; // Ignora os sábados
       counts[day] = (counts[day] || 0) + 1;
     }
 
+    // Calcula o total de aulas
     total = Object.keys(counts).reduce((sum, key) => {
       const day = Number(key);
       const multiplier = multipliers[day] || 0;
-      const dayCount = day === 6 ? (counts[day] > 0 ? 0 : 1) : counts[day]; // Garante que sábado tenha apenas 0 ou 1 dia
-      return sum + (dayCount > 0 ? 1 : 0) * multiplier;
+      const dayCount = counts[day] || 0;
+      return sum + dayCount * multiplier;
     }, 0);
 
+    // Adiciona o multiplicador do sábado ao total
+    total += saturdayMultiplier;
+
     // Subtrai os dias não letivos do total
-    total -= nonTeachingDays[0] + nonTeachingDays[6];
+    total -= nonTeachingDays;
 
     return { total, counts };
-  }, [startDate, endDate, multipliers, nonTeachingDays]);
+  }, [startDate, endDate, multipliers, saturdayMultiplier, nonTeachingDays]);
 
+  // Atualiza o total de aulas e a contagem de dias sempre que as dependências mudam
   useEffect(() => {
     const { total, counts } = calculateDays();
     setTotal(total);
     setCounts(counts);
-  }, [startDate, endDate, multipliers, nonTeachingDays, calculateDays]);
+  }, [startDate, endDate, multipliers, saturdayMultiplier, nonTeachingDays, calculateDays]);
 
+  // Função para alternar a visibilidade da sidebar
   const toggleSidebar = (): void => {
     setIsOpen(!isOpen);
   };
@@ -105,7 +123,7 @@ export default function AulaCalculator() {
 
           <div className="col-span-2">
             <h3 className="text-lg font-semibold mb-4 text-white">Aulas na semana</h3>
-            <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-6">
+            <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-5">
               {weekDays.map((day, index) => (
                 <div key={index} className="flex flex-col items-center border border-gray-300 p-3 rounded-md bg-white bg-opacity-20">
                   <span className="text-sm font-medium text-white">{day}</span>
@@ -123,21 +141,37 @@ export default function AulaCalculator() {
             </div>
           </div>
 
-          <div className="col-span-2 mt-6">
-            <h3 className="text-lg font-semibold mb-4 text-white">Dias Não Letivos</h3>
-            <div className="flex gap-6 justify-center">
-              <div className="flex flex-col items-center">
-                <label className="text-sm font-medium text-white mb-2">Insira a quantidade de dias não letivos durante a semana</label>
-                <input
-                  type="number"
-                  value={nonTeachingDays[6]}
-                  onChange={(e) => handleNonTeachingDayChange(6, Number(e.target.value))}
-                  className="w-16 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  min={0}
-                />
-              </div>
+        <div className="col-span-2 flex flex-col items-center mt-4 md:flex-row md:justify-around w-full">
+          <div className="col-span-2 flex flex-col items-center mt-6 w-full max-w-sm">
+            <h3 className="text-lg font-semibold mb-4 text-white">Sábado Letivo</h3>
+            <div className="flex flex-col items-center border border-gray-300 p-4 rounded-md bg-white bg-opacity-20 w-full">
+              <span className="text-sm font-medium text-white mb-2">Sábado</span>
+              <select
+                onChange={(e) => handleSaturdayMultiplierChange(Number(e.target.value))}
+                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                {[...Array(11).keys()].map(num => (
+                  <option key={num} value={num}>{num}</option>
+                ))}
+              </select>
             </div>
           </div>
+
+          <div className="col-span-2 flex flex-col items-center mt-6 w-full max-w-sm">
+            <h3 className="text-lg font-semibold mb-4 text-white">Quantidade de dias não letivos</h3>
+            <div className="flex flex-col items-center border border-gray-300 p-4 rounded-md bg-white bg-opacity-20 w-full">
+              <span className="text-sm font-medium text-white mb-2">Dias não letivos</span>
+              <select
+                onChange={(e) => handleNonTeachingDaysChange(Number(e.target.value))}
+                className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                {[...Array(11).keys()].map(num => (
+                  <option key={num} value={num}>{num}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
 
           <div className="col-span-2 text-lg font-semibold text-center mt-6 text-white">
             <span>Total de Aulas: </span><span className="text-yellow-300">{total}</span>
@@ -146,4 +180,6 @@ export default function AulaCalculator() {
       </div>
     </div>
   );
-}
+};
+
+export default AulaCalculator;
