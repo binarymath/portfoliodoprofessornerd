@@ -1,5 +1,9 @@
 'use client';
 import { FC } from 'react';
+import Image from 'next/image';
+import casaIcon from '../assets/icons/casa.png';
+import calculadoraIcon from '../assets/icons/calculadora.ico';
+
 
 interface SidebarProps {
   isOpen: boolean; // Estado para saber se o sidebar está aberto ou fechado
@@ -25,12 +29,18 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
         </div>
         {/* Itens do Sidebar */}
         <ul className="space-y-4 p-4">
-          <li>
-            <a href="#" className="block text-lg">Item 1</a>
-          </li>
-          <li>
-            <a href="#" className="block text-lg">Item 2</a>
-          </li>
+
+        <li className="flex items-center space-x-2">
+          <Image src={casaIcon} alt="Home Icon" width={24} height={24} className="filter invert" />
+          <a href="/" className="block text-md  ">Home</a>
+        </li>
+        
+        <li className="flex items-center space-x-2">
+          <Image src={calculadoraIcon} alt="Home Icon" width={24} height={24} className="filter invert" />
+          <a href="/calculadora" className="block text-md  ">Calculadora</a>
+        </li>
+
+
           <li>
             <a href="#" className="block text-lg">Item 3</a>
           </li>
@@ -52,11 +62,10 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
             viewBox="0 0 24 24"
             stroke="currentColor"
             className="h-6 w-6 transform text-white"
-          >
-            <path
+          >          <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth="5"
+              strokeWidth="3"
               d="M15 19l-7-7 7-7" // Seta para a esquerda
             />
           </svg>

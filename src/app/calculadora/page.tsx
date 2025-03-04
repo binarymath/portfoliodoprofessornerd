@@ -158,9 +158,9 @@ const AulaCalculator: React.FC = () => {
           </div>
 
           <div className="col-span-2 flex flex-col items-center mt-6 w-full max-w-sm">
-            <h3 className="text-lg font-semibold mb-4 text-white">Quantidade de dias não letivos</h3>
+            <h3 className="text-lg font-semibold mb-4 text-white">Quantidade de aulas não letivas</h3>
             <div className="flex flex-col items-center border border-gray-300 p-4 rounded-md bg-white bg-opacity-20 w-full">
-              <span className="text-sm font-medium text-white mb-2">Dias não letivos</span>
+              <span className="text-sm font-medium text-white mb-2">Aulas não letivas</span>
               <select
                 onChange={(e) => handleNonTeachingDaysChange(Number(e.target.value))}
                 className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
