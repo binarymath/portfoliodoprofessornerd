@@ -54,19 +54,18 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
       </div>
 
       {/* Botão para abrir e fechar o sidebar, posicionado fora do sidebar quando fechado */}
-        {!isOpen && (
-            <button
-            onClick={toggleSidebar}
-            className={`fixed bottom-10 right-10 transform text-white p-2 rounded-full flex justify-center items-center bg-blue-900 bg-opacity-50`}
-            style={{ width: '40px', height: '40px' }}
-            >
-            <Image
-              src={SetaIcon}
-              alt="Toggle Sidebar"
-              className={`h-8 w-8 transform transition-transform duration-300 ${isOpen ? 'rotate-270' : 'rotate-180'} filter invert`}
-            />
-            </button>
-        )}
+      {!isOpen && (
+        <button
+          onClick={toggleSidebar}
+          className={`fixed bottom-10 right-10 transform text-white p-2 rounded-full flex justify-center items-center bg-blue-900 bg-opacity-50`}
+          style={{ width: '40px', height: '40px' }}
+        >
+          <Image
+            src={SetaIcon}
+            alt="Toggle Sidebar"
+            className={`h-8 w-8 transform transition-transform duration-300 ${isOpen ? 'rotate-270' : 'rotate-180'} filter invert`}
+          />
+        </button>
       )}
     </>
   );
