@@ -1,5 +1,8 @@
 'use client'
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
+import casaIcons from '../assets/icons/casa.png'; 
+import calculadoraIcons from '../assets/icons/calculadora.ico';
 
 const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -35,10 +38,16 @@ const Navbar: React.FC = () => {
                 </button>
             </div>
             <div className={`flex flex-col items-center bg-gray-800 w-full ${isOpen ? 'block' : 'hidden'}`}>
-                <a href="#home" className="text-white py-2">Home</a>
-                <a href="#about" className="text-white py-2">About</a>
-                <a href="#projects" className="text-white py-2">Projects</a>
-                <a href="#contact" className="text-white py-2">Contact</a>
+                <div className="flex items-center py-2">
+                    <Image src={casaIcons} alt="Home Icon" className="h-6 w-6 mr-2" style={{ filter: 'invert(1)' }} />
+                    <a href="/" className="text-white hover:bg-blue-500 py-2 px-4 rounded">Home</a>
+                </div>
+                <div className="flex items-center py-2">
+                    <Image src={calculadoraIcons} alt="calculadora Icon" className="h-6 w-6 mr-2" style={{ filter: 'invert(1)' }} />
+                    <a href="/calculadora" className="text-white hover:bg-blue-500 py-2 px-4 rounded">Calculadora de Aula</a>
+                </div>
+                <a href="#projects" className="text-white hover:bg-blue-500 py-2 px-4 rounded">Projects</a>
+                <a href="#contact" className="text-white hover:bg-blue-500 py-2 px-4 rounded">Contact</a>
             </div>
         </div>
     );
