@@ -1,5 +1,6 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+
+import React, { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import casaIcons from '../assets/icons/casa.png'; 
 import calculadoraIcons from '../assets/icons/calculadora.ico';
@@ -12,25 +13,25 @@ const Navbar: React.FC = () => {
         setIsOpen(!isOpen);
     };
 
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (isOpen && !(event.target as HTMLElement).closest('.navbar')) {
-                setIsOpen(false);
-            }
-        };
+    const handleClickOutside = useCallback((event: MouseEvent) => {
+        if (isOpen && !(event.target as HTMLElement).closest('.navbar')) {
+            setIsOpen(false);
+        }
+    }, [isOpen]);
 
+    useEffect(() => {
         document.addEventListener('click', handleClickOutside);
 
         return () => {
             document.removeEventListener('click', handleClickOutside);
         };
-    }, [isOpen]); // Apenas `isOpen` como dependência
+    }, [handleClickOutside]);
 
     return (
         <div className="navbar fixed top-0 w-full bg-gray-800 z-50">
             <div className="flex justify-between items-center p-4">
                 <div className="text-white text-lg">Portfólio do Professor Nerd</div>
-                <button className="text-white text-2xl" onClick={toggleMenu}>
+                <button className="navbar text-white text-2xl" onClick={toggleMenu}>
                     &#9776;
                 </button>
             </div>
