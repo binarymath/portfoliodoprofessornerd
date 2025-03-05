@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -8,8 +8,26 @@ const Navbar: React.FC = () => {
         setIsOpen(!isOpen);
     };
 
+    const handleClickOutside = (event: MouseEvent) => {
+        if (isOpen && !(event.target as HTMLElement).closest('.navbar')) {
+            setIsOpen(false);
+        }
+    };
+
+    useEffect(() => {
+        if (isOpen) {
+            document.addEventListener('click', handleClickOutside);
+        } else {
+            document.removeEventListener('click', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, [isOpen]);
+
     return (
-        <div className="fixed top-0 w-full bg-gray-800 z-50">
+        <div className="navbar fixed top-0 w-full bg-gray-800 z-50">
             <div className="flex justify-between items-center p-4">
                 <div className="text-white text-lg">Portfólio do Professor Nerd</div>
                 <button className="text-white text-2xl" onClick={toggleMenu}>
