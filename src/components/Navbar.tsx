@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import casaIcons from '../assets/icons/casa.png'; 
 import calculadoraIcons from '../assets/icons/calculadora.ico';
+import Link from 'next/link';
 
 const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -11,23 +12,19 @@ const Navbar: React.FC = () => {
         setIsOpen(!isOpen);
     };
 
-    const handleClickOutside = (event: MouseEvent) => {
-        if (isOpen && !(event.target as HTMLElement).closest('.navbar')) {
-            setIsOpen(false);
-        }
-    };
-
     useEffect(() => {
-        if (isOpen) {
-            document.addEventListener('click', handleClickOutside);
-        } else {
-            document.removeEventListener('click', handleClickOutside);
-        }
+        const handleClickOutside = (event: MouseEvent) => {
+            if (isOpen && !(event.target as HTMLElement).closest('.navbar')) {
+                setIsOpen(false);
+            }
+        };
+
+        document.addEventListener('click', handleClickOutside);
 
         return () => {
             document.removeEventListener('click', handleClickOutside);
         };
-    }, [isOpen]);
+    }, [isOpen]); // Apenas `isOpen` como dependência
 
     return (
         <div className="navbar fixed top-0 w-full bg-gray-800 z-50">
@@ -39,15 +36,15 @@ const Navbar: React.FC = () => {
             </div>
             <div className={`flex flex-col items-center bg-gray-800 w-full ${isOpen ? 'block' : 'hidden'}`}>
                 <div className="flex items-center py-2">
-                    <Image src={casaIcons} alt="Home Icon" className="h-6 w-6 mr-2" style={{ filter: 'invert(1)' }} />
-                    <a href="/" className="text-white hover:bg-blue-500 py-2 px-4 rounded">Home</a>
+                    <Image src={casaIcons} alt="Home Icon" width={24} height={24} className="mr-2" style={{ filter: 'invert(1)' }} />
+                    <Link href="/" className="text-white hover:bg-blue-500 py-2 px-4 rounded">Home</Link>
                 </div>
                 <div className="flex items-center py-2">
-                    <Image src={calculadoraIcons} alt="calculadora Icon" className="h-6 w-6 mr-2" style={{ filter: 'invert(1)' }} />
-                    <a href="/calculadora" className="text-white hover:bg-blue-500 py-2 px-4 rounded">Calculadora de Aula</a>
+                    <Image src={calculadoraIcons} alt="Calculadora Icon" width={24} height={24} className="mr-2" style={{ filter: 'invert(1)' }} />
+                    <Link href="/calculadora" className="text-white hover:bg-blue-500 py-2 px-4 rounded">Calculadora de Aula</Link>
                 </div>
-                <a href="#projects" className="text-white hover:bg-blue-500 py-2 px-4 rounded">Projects</a>
-                <a href="#contact" className="text-white hover:bg-blue-500 py-2 px-4 rounded">Contact</a>
+                <Link href="#projects" className="text-white hover:bg-blue-500 py-2 px-4 rounded">Projects</Link>
+                <Link href="#contact" className="text-white hover:bg-blue-500 py-2 px-4 rounded">Contact</Link>
             </div>
         </div>
     );
