@@ -7,7 +7,7 @@ const Page = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <div className="flex-1 mt-16 p-4"> {/* Ajuste a margem superior conforme necessário */}
+      <div className="flex-1 mt-6 p-4 flex justify-center"> {/* Ajuste a margem superior conforme necessário */}
         <Card />
       </div>
     </div>
