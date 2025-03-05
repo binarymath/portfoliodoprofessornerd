@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import casaIcons from '../assets/icons/casa.png'; 
 import calculadoraIcons from '../assets/icons/calculadora.ico';
+import calendarioIcons from '../assets/icons/calendario.png'; 
 import Link from 'next/link';
 
 const Navbar: React.FC = () => {
@@ -40,12 +41,24 @@ const Navbar: React.FC = () => {
                     <Image src={casaIcons} alt="Home Icon" width={24} height={24} className="mr-2" style={{ filter: 'invert(1)' }} />
                     <Link href="/" className="text-white hover:bg-blue-500 py-2 px-4 rounded">Home</Link>
                 </div>
+
+                <div className="flex items-center py-2">
+                    <Image src={calendarioIcons} alt="Calculadora Icon" width={24} height={24} className="mr-2" style={{ filter: 'invert(1)' }} />
+                    <Link href="/calendario" className="text-white hover:bg-blue-500 py-2 px-4 rounded">Calendário</Link>
+                </div>
+
                 <div className="flex items-center py-2">
                     <Image src={calculadoraIcons} alt="Calculadora Icon" width={24} height={24} className="mr-2" style={{ filter: 'invert(1)' }} />
                     <Link href="/calculadora" className="text-white hover:bg-blue-500 py-2 px-4 rounded">Calculadora de Aula</Link>
                 </div>
+               
+               
                 <Link href="#projects" className="text-white hover:bg-blue-500 py-2 px-4 rounded">Projects</Link>
+               
+               
                 <Link href="#contact" className="text-white hover:bg-blue-500 py-2 px-4 rounded">Contact</Link>
+            
+            
             </div>
         </div>
     );

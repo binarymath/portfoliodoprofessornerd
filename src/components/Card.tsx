@@ -1,42 +1,56 @@
 'use client';
 import React from 'react';
-
+import Link from 'next/link';
+import IMAGE from 'next/image';
+import calculadoraImage from '../assets/images/calculadora.png';
+import calendarioImage from '../assets/images/calendario.png';
 
 const Card: React.FC = () => {
   return (
-    <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 transform transition-transform hover:scale-105">
-      
-      <div className="p-5">
-        <a href="#">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-           Confira a nossa calculadora de aula
-          </h5>
-        </a>
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-          Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
-        </p>
-        <a
-          href="/calculadora" 
-          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
-          Acesse a calculadora
-          <svg
-            className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 14 10"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M1 5h12m0 0L9 1m4 4L9 9"
+    <div className="flex space-x-4">
+      <Link href="/calculadora">
+        <div className="relative w-48 h-68 bg-white border-4 border-yellow-400 rounded-xl shadow-xl overflow-hidden transform transition-transform hover:scale-105">
+          {/* Brilho na borda */}
+          <div className="absolute inset-0 bg-gradient-to-br from-yellow-300 to-yellow-500 opacity-20"></div>
+          
+          {/* Imagem no topo */}
+          <div className="w-full h-auto bg-gray-300">
+            <IMAGE
+              src={calculadoraImage}
+              alt="Figurinha" 
+              className="w-full h-full object-cover"
             />
-          </svg>
-        </a>
-      </div>
+          </div>
+          
+          {/* Conteúdo da figurinha */}
+          <div className="p-2 text-center">
+            <h5 className="text-md font-bold text-gray-900">Calculadora de Aula</h5>
+            <p className="text-sm text-gray-700">Realize os cálculos de aula com nossa calculadora.</p>
+          </div>
+        </div>
+      </Link>
+
+      <Link href="/calendario">
+        <div className="relative w-48 h-68 bg-white border-4 border-yellow-400 rounded-xl shadow-xl overflow-hidden transform transition-transform hover:scale-105">
+          {/* Brilho na borda */}
+          <div className="absolute inset-0 bg-gradient-to-br from-yellow-300 to-yellow-500 opacity-20"></div>
+          
+          {/* Imagem no topo */}
+          <div className="w-full h-auto bg-gray-300">
+            <IMAGE
+              src={calendarioImage}
+              alt="Figurinha" 
+              className="w-full h-full object-cover"
+            />
+          </div>
+          
+          {/* Conteúdo da figurinha */}
+          <div className="p-2 text-center">
+            <h5 className="text-md font-bold text-gray-900">Calendário Escolar</h5>
+            <p className="text-sm text-gray-700">Não perca nenhum momento escola integrando nossos calendários</p>
+          </div>
+        </div>
+      </Link>
     </div>
   );
 };
