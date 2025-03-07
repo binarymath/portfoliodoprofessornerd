@@ -27,7 +27,7 @@ const App: React.FC = () => {
       const response = await result.response;
       const text = await response.text();
       setResponse(text);
-    } catch (err) {
+    } catch {
       setError('Erro ao obter resposta da GenAI.');
     } finally {
       setLoading(false);
@@ -45,8 +45,9 @@ const App: React.FC = () => {
 
   return (
     <>
-    <div className = "mb-12"> <Navbar /></div>
-     
+      <div className="mb-12">
+        <Navbar />
+      </div>
       <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
         <h1 className="text-2xl font-bold mb-4">Faça a sua pergunta.</h1>
         <div className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-2 gap-4">
