@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
     return (
         <div className="navbar fixed top-0 w-full bg-gray-800 z-50">
             <div className="flex justify-between items-center p-4">
-                <div className="text-white text-lg">Portfólio do Professor Nerd</div>
+                <Link href="/" className="text-white text-lg">Portfólio do Professor Nerd</Link>
                 <button className="navbar text-white text-2xl" onClick={toggleMenu}>
                     &#9776;
                 </button>
