@@ -27,8 +27,6 @@ const App: React.FC = () => {
       const response = await result.response;
       const text = await response.text();
       setResponse(text);
-    } catch {
-      setError('Erro ao obter resposta da GenAI.');
     } finally {
       setLoading(false);
     }
