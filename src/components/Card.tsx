@@ -30,22 +30,27 @@ const cards = [
 const Card: React.FC = () => {
   return (
     <div className="flex justify-center items-center min-h-screen p-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-5xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-7xl">
         {cards.map((card, index) => (
           <Link key={index} href={card.href} className="w-full">
-            <div className="relative bg-white border-4 border-yellow-400 rounded-xl shadow-xl overflow-hidden transform transition-transform hover:scale-105">
+            <div className="relative bg-white border-4 border-yellow-400 rounded-xl shadow-xl overflow-hidden transform transition-transform hover:scale-105 h-full flex flex-col">
               {/* Brilho na borda */}
               <div className="absolute inset-0 bg-gradient-to-br from-yellow-300 to-yellow-500 opacity-20"></div>
 
               {/* Imagem */}
-              <div className="relative w-full h-40 bg-gray-300">
-                <Image src={card.image} alt={card.title} className="object-contain" layout="fill" />
+              <div className="relative w-full h-40 bg-gray-300 flex-shrink-0">
+                <Image
+                  src={card.image}
+                  alt={card.title}
+                  className="object-contain"
+                  layout="fill"
+                />
               </div>
 
               {/* Conteúdo */}
-              <div className="p-2 text-center">
-                <h5 className="text-md font-bold text-gray-900">{card.title}</h5>
-                <p className="text-sm text-gray-700">{card.description}</p>
+              <div className="p-4 text-center flex-grow">
+                <h5 className="text-lg font-bold text-gray-900">{card.title}</h5>
+                <p className="text-sm text-gray-700 mt-2">{card.description}</p>
               </div>
             </div>
           </Link>

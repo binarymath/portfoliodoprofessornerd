@@ -38,6 +38,7 @@ const Navbar: React.FC = () => {
   }, [isOpen]);
 
   return (
+    <div className="mb-">
     <nav className="fixed top-0 w-full bg-gray-800 z-50 shadow-md">
       <div className="flex justify-between items-center p-4">
         <Link href="/" className="text-white text-lg font-bold">
@@ -85,6 +86,7 @@ const Navbar: React.FC = () => {
         ))}
       </div>
     </nav>
+    </div>
   );
 };
 
