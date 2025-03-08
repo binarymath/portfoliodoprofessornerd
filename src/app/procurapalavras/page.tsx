@@ -101,7 +101,7 @@ const WordSearch: React.FC = () => {
       <div className='mb-20'><Navbar /></div>
     
       <div className="p-6 max-w-xl mx-auto bg-white border rounded shadow-md">
-        <h1 className="text-2xl font-bold text-center mb-4 print:hidden">Caça-Palavras</h1>
+        <h1 className="text-2xl font-bold text-center mb-4 ">Caça-Palavras</h1>
         <p className="text-center mb-4 text-gray-600 print:hidden">Adicione palavras para criar seu caça-palavras personalizado. Você também pode adicionar um texto personalizado que aparecerá na impressão.</p>
         
         <div className="mb-4 print:hidden">
