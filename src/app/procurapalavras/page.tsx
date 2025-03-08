@@ -1,5 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react';
+import Navbar from '../../components/Navbar';
 
 type Grid = string[][];
 
@@ -65,6 +66,14 @@ const WordSearch: React.FC = () => {
     }
   };
 
+  const handleCustomTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (e.target.value.length <= 100) {
+      setCustomText(e.target.value);
+    } else {
+      alert('O texto personalizado não pode ultrapassar 100 caracteres.');
+    }
+  };
+
   const printWordSearch = () => {
     window.print();
   };
@@ -88,77 +97,81 @@ const WordSearch: React.FC = () => {
   }, [words, size]);
 
   return (
-    <div className="p-6 max-w-xl mx-auto bg-white border rounded shadow-md">
-      <h1 className="text-2xl font-bold text-center mb-4 print:hidden">Caça-Palavras</h1>
-      <p className="text-center mb-4 text-gray-600 print:hidden">Adicione palavras para criar seu caça-palavras personalizado. Você também pode adicionar um texto personalizado que aparecerá na impressão.</p>
-      
-      <div className="mb-4 print:hidden">
-        <label className="block mb-2 font-semibold">Texto:</label>
-        <textarea
-          value={customText}
-          onChange={(e) => setCustomText(e.target.value)}
-          placeholder="Digite um texto que aparecerá na impressão"
-          className="border p-2 w-full resize-none h-24"
-        />
-      </div>
-      
-      <div className="mb-4 print:hidden">
-        <label className="block mb-2 font-semibold">Adicionar Palavra:</label>
-        <div className="flex items-center">
-          <input
-            type="text"
-            value={inputWord}
-            onChange={(e) => setInputWord(e.target.value)}
-            placeholder="Digite uma palavra para adicionar ao caça-palavras (máximo 17 caracteres)"
-            className="border p-2 mr-2 flex-1"
+    <div>
+      <div className='mb-20'><Navbar /></div>
+    
+      <div className="p-6 max-w-xl mx-auto bg-white border rounded shadow-md">
+        <h1 className="text-2xl font-bold text-center mb-4 print:hidden">Caça-Palavras</h1>
+        <p className="text-center mb-4 text-gray-600 print:hidden">Adicione palavras para criar seu caça-palavras personalizado. Você também pode adicionar um texto personalizado que aparecerá na impressão.</p>
+        
+        <div className="mb-4 print:hidden">
+          <label className="block mb-2 font-semibold">Texto:</label>
+          <textarea
+            value={customText}
+            onChange={handleCustomTextChange}
+            placeholder="Digite um texto que aparecerá na impressão (máximo 100 caracteres)"
+            className="border p-2 w-full resize-none h-24"
           />
-          <button onClick={addWord} className="bg-blue-500 text-white p-2 rounded">
-            Adicionar Palavra
-          </button>
         </div>
-      </div>
-      
-      <div className="mb-4 flex items-center print:hidden">
-        <label className="mr-2">Tamanho da Grade:</label>
-        <input
-          type="number"
-          value={size}
-          onChange={(e) => setSize(Math.min(Math.max(Number(e.target.value), Math.max(...words.map(word => word.length))), 18))}
-          className="border p-2"
-        />
-      </div>
-      
-      <div className="mb-4">
-        <h2 className="font-semibold">Texto:</h2>
-        <p className="break-words">{customText}</p>
-      </div>
-      
-      <div className="mb-4">
-        <h2 className="font-semibold">Palavras a procurar:</h2>
-        <div className="flex flex-wrap gap-4">
-          {words.map((word, index) => (
-            <span key={index} className="font-bold">{word}</span>
+        
+        <div className="mb-4 print:hidden">
+          <label className="block mb-2 font-semibold">Adicionar Palavra:</label>
+          <div className="flex items-center">
+            <input
+              type="text"
+              value={inputWord}
+              onChange={(e) => setInputWord(e.target.value)}
+              placeholder="Digite uma palavra para adicionar ao caça-palavras (máximo 17 caracteres)"
+              className="border p-2 mr-2 flex-1"
+            />
+            <button onClick={addWord} className="bg-blue-500 text-white p-2 rounded">
+              Adicionar Palavra
+            </button>
+          </div>
+        </div>
+        
+        <div className="mb-4 flex items-center print:hidden">
+          <label className="mr-2">Tamanho da Grade:</label>
+          <input
+            type="number"
+            value={size}
+            onChange={(e) => setSize(Math.min(Math.max(Number(e.target.value), Math.max(...words.map(word => word.length))), 18))}
+            className="border p-2"
+          />
+        </div>
+        
+        <div className="mb-4">
+          <h2 className="font-semibold">Texto:</h2>
+          <p className="break-words">{customText}</p>
+        </div>
+        
+        <div className="mb-4">
+          <h2 className="font-semibold">Palavras a procurar:</h2>
+          <div className="flex flex-wrap gap-4">
+            {words.map((word, index) => (
+              <span key={index} className="font-bold">{word}</span>
+            ))}
+          </div>
+        </div>
+        
+        <div className="grid gap-1" style={{ gridTemplateColumns: `repeat(${size}, minmax(0, 1fr))` }}>
+          {grid.map((row, rowIndex) => (
+            row.map((letter, colIndex) => (
+              <div
+                key={`${rowIndex}-${colIndex}`}
+                className="w-12 h-12 flex items-center justify-center border bg-gray-100"
+              >
+                <span className="font-medium text-lg">{letter}</span>
+              </div>
+            ))
           ))}
         </div>
-      </div>
-      
-      <div className="grid gap-1" style={{ gridTemplateColumns: `repeat(${size}, minmax(0, 1fr))` }}>
-        {grid.map((row, rowIndex) => (
-          row.map((letter, colIndex) => (
-            <div
-              key={`${rowIndex}-${colIndex}`}
-              className="w-12 h-12 flex items-center justify-center border bg-gray-100"
-            >
-              <span className="font-medium text-lg">{letter}</span>
-            </div>
-          ))
-        ))}
-      </div>
-      
-      <div className="mt-4 flex justify-end print:hidden">
-        <button onClick={printWordSearch} className="bg-green-500 text-white p-2 rounded">
-          Imprimir
-        </button>
+        
+        <div className="mt-4 flex justify-end print:hidden">
+          <button onClick={printWordSearch} className="bg-green-500 text-white p-2 rounded">
+            Imprimir
+          </button>
+        </div>
       </div>
     </div>
   );
