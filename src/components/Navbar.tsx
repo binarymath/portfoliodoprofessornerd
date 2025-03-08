@@ -1,67 +1,91 @@
-'use client'
+'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import casaIcons from '../assets/icons/casa.png'; 
-import calculadoraIcons from '../assets/icons/calculadora.ico';
-import calendarioIcons from '../assets/icons/calendario.png'; 
 import Link from 'next/link';
+import casaIcon from '../assets/icons/casa.png';
+import calculadoraIcon from '../assets/icons/calculadora.ico';
+import calendarioIcon from '../assets/icons/calendario.png';
+
+const menuItems = [
+  { href: '/', label: 'Home', icon: casaIcon },
+  { href: '/calendario', label: 'Calendário', icon: calendarioIcon },
+  { href: '/calculadora', label: 'Calculadora de Aula', icon: calculadoraIcon },
+  { href: '#projects', label: 'Projects' },
+  { href: '#contact', label: 'Contact' },
+];
 
 const Navbar: React.FC = () => {
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
-    const toggleMenu = () => {
-        setIsOpen(!isOpen);
+  const toggleMenu = () => setIsOpen((prev) => !prev);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
     };
 
-    const handleClickOutside = useCallback((event: MouseEvent) => {
-        if (isOpen && !(event.target as HTMLElement).closest('.navbar')) {
-            setIsOpen(false);
-        }
-    }, [isOpen]);
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
 
-    useEffect(() => {
-        document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
 
-        return () => {
-            document.removeEventListener('click', handleClickOutside);
-        };
-    }, [handleClickOutside]);
+  return (
+    <nav className="fixed top-0 w-full bg-gray-800 z-50 shadow-md">
+      <div className="flex justify-between items-center p-4">
+        <Link href="/" className="text-white text-lg font-bold">
+          Portfólio do Professor Nerd
+        </Link>
+        <button
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+          className="text-white text-2xl md:hidden"
+        >
+          &#9776;
+        </button>
+      </div>
 
-    return (
-        <div className="navbar fixed top-0 w-full bg-gray-800 z-50">
-            <div className="flex justify-between items-center p-4">
-                <Link href="/" className="text-white text-lg">Portfólio do Professor Nerd</Link>
-                <button className="navbar text-white text-2xl" onClick={toggleMenu}>
-                    &#9776;
-                </button>
-            </div>
-            <div className={`flex flex-col items-center bg-gray-800 w-full ${isOpen ? 'block' : 'hidden'}`}>
-                <div className="flex items-center py-2">
-                    <Image src={casaIcons} alt="Home Icon" width={24} height={24} className="mr-2" style={{ filter: 'invert(1)' }} />
-                    <Link href="/" className="text-white hover:bg-blue-500 py-2 px-4 rounded">Home</Link>
-                </div>
+      {/* Menu para telas grandes */}
+      <div className="hidden md:flex justify-center bg-gray-800">
+        {menuItems.map(({ href, label, icon }) => (
+          <Link
+            key={href}
+            href={href}
+            className="flex items-center text-white hover:bg-blue-500 py-2 px-4 rounded transition"
+          >
+            {icon && <Image src={icon} alt={`${label} Icon`} width={24} height={24} className="mr-2" />}
+            {label}
+          </Link>
+        ))}
+      </div>
 
-                <div className="flex items-center py-2">
-                    <Image src={calendarioIcons} alt="Calculadora Icon" width={24} height={24} className="mr-2" style={{ filter: 'invert(1)' }} />
-                    <Link href="/calendario" className="text-white hover:bg-blue-500 py-2 px-4 rounded">Calendário</Link>
-                </div>
-
-                <div className="flex items-center py-2">
-                    <Image src={calculadoraIcons} alt="Calculadora Icon" width={24} height={24} className="mr-2" style={{ filter: 'invert(1)' }} />
-                    <Link href="/calculadora" className="text-white hover:bg-blue-500 py-2 px-4 rounded">Calculadora de Aula</Link>
-                </div>
-               
-               
-                <Link href="#projects" className="text-white hover:bg-blue-500 py-2 px-4 rounded">Projects</Link>
-               
-               
-                <Link href="#contact" className="text-white hover:bg-blue-500 py-2 px-4 rounded">Contact</Link>
-            
-            
-            </div>
-        </div>
-    );
+      {/* Menu para telas pequenas */}
+      <div
+        ref={menuRef}
+        className={`absolute top-full left-0 w-full bg-gray-800 transition-all duration-300 ease-in-out md:hidden ${
+          isOpen ? 'block' : 'hidden'
+        }`}
+      >
+        {menuItems.map(({ href, label, icon }) => (
+          <Link
+            key={href}
+            href={href}
+            className="flex items-center text-white hover:bg-blue-500 py-2 px-4 rounded transition"
+          >
+            {icon && <Image src={icon} alt={`${label} Icon`} width={24} height={24} className="mr-2" />}
+            {label}
+          </Link>
+        ))}
+      </div>
+    </nav>
+  );
 };
 
 export default Navbar;
