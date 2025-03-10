@@ -28,64 +28,78 @@ const Navbar: React.FC = () => {
       }
     };
 
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isOpen]);
+  }, []);
 
   return (
-    <div className="mb-">
-    <nav className="fixed top-0 w-full bg-gray-800 z-50 shadow-md">
-      <div className="flex justify-between items-center p-4">
-        <Link href="/" className="text-white text-lg font-bold">
-          Portfólio do Professor Nerd
-        </Link>
-        <button
-          onClick={toggleMenu}
-          aria-label="Toggle menu"
-          className="text-white text-2xl md:hidden"
+    <div className="mb-4">
+      <nav className="fixed top-0 w-full bg-gray-800 z-50 shadow-md">
+        <div className="flex justify-between items-center p-4">
+          <Link href="/" className="text-white text-lg font-bold">
+            Portfólio do Professor Nerd
+          </Link>
+          <button
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+            className="text-white text-2xl md:hidden"
+          >
+            &#9776;
+          </button>
+        </div>
+
+        {/* Menu para telas grandes */}
+        <div className="hidden md:flex justify-center bg-gray-800">
+          {menuItems.map(({ href, label, icon }) => (
+            <Link
+              key={href}
+              href={href}
+              className="flex items-center text-white hover:bg-blue-500 py-2 px-4 rounded transition"
+            >
+              {icon && (
+                <Image
+                  src={icon}
+                  alt={`${label} Icon`}
+                  width={24}
+                  height={24}
+                  className="mr-2 filter invert"
+                />
+              )}
+              {label}
+            </Link>
+          ))}
+        </div>
+
+        {/* Menu para telas pequenas */}
+        <div
+          ref={menuRef}
+          className={`absolute top-full left-0 w-full bg-gray-800 transition-all duration-300 ease-in-out md:hidden ${
+            isOpen ? 'block' : 'hidden'
+          }`}
         >
-          &#9776;
-        </button>
-      </div>
-
-      {/* Menu para telas grandes */}
-      <div className="hidden md:flex justify-center bg-gray-800">
-        {menuItems.map(({ href, label, icon }) => (
-          <Link
-            key={href}
-            href={href}
-            className="flex items-center text-white hover:bg-blue-500 py-2 px-4 rounded transition"
-          >
-            {icon && <Image src={icon} alt={`${label} Icon`} width={24} height={24} className="mr-2" />}
-            {label}
-          </Link>
-        ))}
-      </div>
-
-      {/* Menu para telas pequenas */}
-      <div
-        ref={menuRef}
-        className={`absolute top-full left-0 w-full bg-gray-800 transition-all duration-300 ease-in-out md:hidden ${
-          isOpen ? 'block' : 'hidden'
-        }`}
-      >
-        {menuItems.map(({ href, label, icon }) => (
-          <Link
-            key={href}
-            href={href}
-            className="flex items-center text-white hover:bg-blue-500 py-2 px-4 rounded transition"
-          >
-            {icon && <Image src={icon} alt={`${label} Icon`} width={24} height={24} className="mr-2" />}
-            {label}
-          </Link>
-        ))}
-      </div>
-    </nav>
+          {menuItems.map(({ href, label, icon }) => (
+            <Link
+              key={href}
+              href={href}
+              className="flex items-center text-white hover:bg-blue-500 py-2 px-4 rounded transition"
+              onClick={() => setIsOpen(false)} // Fechar o menu ao clicar em um item
+            >
+              {icon && (
+                <Image
+                  src={icon}
+                  alt={`${label} Icon`}
+                  width={24}
+                  height={24}
+                  className="mr-2 filter invert"
+                />
+              )}
+              {label}
+            </Link>
+          ))}
+        </div>
+      </nav>
     </div>
   );
 };
