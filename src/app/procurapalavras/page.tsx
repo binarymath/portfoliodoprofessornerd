@@ -97,32 +97,32 @@ const WordSearch: React.FC = () => {
   }, [words, size]);
 
   return (
-    <div>
+    <div className="bg-white dark:bg-gray-900 text-black dark:text-white min-h-screen">
       <div className='mb-36'><Navbar /></div>
     
-      <div className="p-6 max-w-xl mx-auto bg-white border rounded shadow-md">
-        <h1 className="text-2xl font-bold text-center mb-4 ">Caça-Palavras</h1>
-        <p className="text-center mb-4 text-gray-600 print:hidden">Adicione palavras para criar seu caça-palavras personalizado. Você também pode adicionar um texto personalizado que aparecerá na impressão.</p>
+      <div className="p-6 max-w-xl mx-auto bg-white dark:bg-gray-800 border dark:border-gray-700 rounded shadow-md">
+        <h1 className="text-2xl font-bold text-center mb-4 text-black dark:text-white">Caça-Palavras</h1>
+        <p className="text-center mb-4 text-gray-600 dark:text-gray-400 print:hidden">Adicione palavras para criar seu caça-palavras personalizado. Você também pode adicionar um texto personalizado que aparecerá na impressão.</p>
         
         <div className="mb-4 print:hidden">
-          <label className="block mb-2 font-semibold">Texto:</label>
+          <label className="block mb-2 font-semibold text-black dark:text-white">Texto:</label>
           <textarea
             value={customText}
             onChange={handleCustomTextChange}
             placeholder="Digite um texto que aparecerá na impressão (máximo 100 caracteres)"
-            className="border p-2 w-full resize-none h-24"
+            className="border dark:border-gray-700 p-2 w-full resize-none h-24 bg-white dark:bg-gray-800 text-black dark:text-white"
           />
         </div>
         
         <div className="mb-4 print:hidden">
-          <label className="block mb-2 font-semibold">Adicionar Palavra:</label>
+          <label className="block mb-2 font-semibold text-black dark:text-white">Adicionar Palavra:</label>
           <div className="flex items-center">
             <input
               type="text"
               value={inputWord}
               onChange={(e) => setInputWord(e.target.value)}
               placeholder="Digite uma palavra para adicionar ao caça-palavras (máximo 17 caracteres)"
-              className="border p-2 mr-2 flex-1"
+              className="border dark:border-gray-700 p-2 mr-2 flex-1 bg-white dark:bg-gray-800 text-black dark:text-white"
             />
             <button onClick={addWord} className="bg-blue-500 text-white p-2 rounded">
               Adicionar Palavra
@@ -131,22 +131,22 @@ const WordSearch: React.FC = () => {
         </div>
         
         <div className="mb-4 flex items-center print:hidden">
-          <label className="mr-2">Tamanho da Grade:</label>
+          <label className="mr-2 text-black dark:text-white">Tamanho da Grade:</label>
           <input
             type="number"
             value={size}
             onChange={(e) => setSize(Math.min(Math.max(Number(e.target.value), Math.max(...words.map(word => word.length))), 18))}
-            className="border p-2"
+            className="border dark:border-gray-700 p-2 bg-white dark:bg-gray-800 text-black dark:text-white"
           />
         </div>
         
         <div className="mb-4">
-          <h2 className="font-semibold">Texto:</h2>
+          <h2 className="font-semibold text-black dark:text-white">Texto:</h2>
           <p className="break-words">{customText}</p>
         </div>
         
         <div className="mb-4">
-          <h2 className="font-semibold">Palavras a procurar:</h2>
+          <h2 className="font-semibold text-black dark:text-white">Palavras a procurar:</h2>
           <div className="flex flex-wrap gap-4">
             {words.map((word, index) => (
               <span key={index} className="font-bold">{word}</span>
@@ -159,9 +159,9 @@ const WordSearch: React.FC = () => {
             row.map((letter, colIndex) => (
               <div
                 key={`${rowIndex}-${colIndex}`}
-                className="w-12 h-12 flex items-center justify-center border bg-gray-100"
+                className="w-12 h-12 flex items-center justify-center border bg-gray-100 dark:bg-gray-700"
               >
-                <span className="font-medium text-lg">{letter}</span>
+                <span className="font-medium text-lg text-black dark:text-white">{letter}</span>
               </div>
             ))
           ))}

@@ -4,7 +4,7 @@ import React from 'react';
 
 const CalendarioPage: React.FC = () => {
     return (
-        <div>
+        <div className="bg-white dark:bg-gray-900 text-black dark:text-white min-h-screen">
             <div className='mb-40'><Navbar /></div>
             <div className='flex flex-col items-center px-4'>
                 <div className='mb-20 w-full'>
