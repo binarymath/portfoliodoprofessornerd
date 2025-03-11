@@ -11,8 +11,7 @@ const menuItems = [
   { href: '/', label: 'Home', icon: casaIcon },
   { href: '/calendario', label: 'Calendário', icon: calendarioIcon },
   { href: '/calculadora', label: 'Calculadora de Aula', icon: calculadoraIcon },
-  { href: '#projects', label: 'Projects' },
-  { href: '#contact', label: 'Contact' },
+
 ];
 
 const Navbar: React.FC = () => {
