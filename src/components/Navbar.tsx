@@ -6,11 +6,14 @@ import Link from 'next/link';
 import casaIcon from '../assets/icons/casa.png';
 import calculadoraIcon from '../assets/icons/calculadora.ico';
 import calendarioIcon from '../assets/icons/calendario.png';
+import atendimentoIcon from '../assets/icons/atendimento.png';
 
 const menuItems = [
   { href: '/', label: 'Home', icon: casaIcon },
   { href: '/calendario', label: 'Calendário', icon: calendarioIcon },
   { href: '/calculadora', label: 'Calculadora de Aula', icon: calculadoraIcon },
+  { href: '/tutordematematica', label: 'Tutor Online', icon: atendimentoIcon },
+  
 
 ];
 
