@@ -5,6 +5,7 @@ import Image from 'next/image';
 import calculadoraImage from '../assets/images/calculadora.png';
 import calendarioImage from '../assets/images/calendario.png';
 import atendenteImage from '../assets/images/atendente.png';
+import buscaImage from '../assets/images/buscaPalavras.png';
 
 const cards = [
   {
@@ -25,11 +26,18 @@ const cards = [
     title: "Não fique com dúvidas",
     description: "Realize suas perguntas e tire suas dificuldades com nosso tutor online.",
   },
+  {
+    href: "/procurapalavras",
+    image: buscaImage,
+    title: "Construa seu caça palavras",
+    description: "Construa seu caça palavras imprima e saia procurando as palavras",
+  },
+  
 ];
 
 const Card: React.FC = () => {
   return (
-    <div className="flex justify-center items-center min-h-screen p-4">
+    <div className="mt-10 flex justify-center items-center min-h-screen p-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-7xl">
         {cards.map((card, index) => (
           <Link key={index} href={card.href} className="w-full">

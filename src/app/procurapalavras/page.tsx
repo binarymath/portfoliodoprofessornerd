@@ -98,7 +98,7 @@ const WordSearch: React.FC = () => {
 
   return (
     <div>
-      <div className='mb-20'><Navbar /></div>
+      <div className='mb-36'><Navbar /></div>
     
       <div className="p-6 max-w-xl mx-auto bg-white border rounded shadow-md">
         <h1 className="text-2xl font-bold text-center mb-4 ">Caça-Palavras</h1>

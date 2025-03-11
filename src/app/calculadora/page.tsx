@@ -87,7 +87,7 @@ const AulaCalculator: React.FC = () => {
 
   return (
     <div>
-      <div className="mb-12"><Navbar /></div> 
+      <div className="mb-36"><Navbar /></div> 
       <div className="flex-1 p-6 max-w-4xl mx-auto mt-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg shadow-md transition-all duration-300 ease-in-out">
         <h2 className="text-3xl font-bold mb-6 text-center text-white">Calculadora de Aulas</h2>
         <div className="grid gap-6 md:grid-cols-2">
