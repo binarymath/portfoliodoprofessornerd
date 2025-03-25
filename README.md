@@ -1,38 +1,23 @@
-# Portfolio Nerd
+# Professor Nerd Portfolio
 
-Este é um projeto [Next.js](https://nextjs.org) inicializado com [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Welcome to the Professor Nerd Portfolio, a platform dedicated to providing educational tools and resources for students and teachers.
 
-## Iniciando
+## Features
 
-Primeiro, execute o servidor de desenvolvimento:
+- **Class Calculator**: Perform class-related calculations quickly and conveniently.
+- **School Calendar**: Integrate and track important school events to ensure you never miss a significant date.
+- **Online Tutor**: Get assistance with academic questions and challenges from our online tutor, available to support your learning journey.
+- **Educational Games**: Access a variety of games that make learning fun and interactive.
+- **Word Search Builder**: Create and print your own customized word searches for educational or recreational activities.
 
-```bash
-npm run dev
-# ou
-yarn dev
-# ou
-pnpm dev
-# ou
-bun dev
-```
+## How to Access
 
-Abra [http://localhost:3000](http://localhost:3000) com seu navegador para ver o resultado.
+You can explore all these features by visiting our website: https://portfoliodoprofessornerd.vercel.app/
 
-Você pode começar a editar a página modificando `app/page.tsx`. A página é atualizada automaticamente conforme você edita o arquivo.
 
-Este projeto usa [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) para otimizar e carregar automaticamente [Geist](https://vercel.com/font), uma nova família de fontes para Vercel.
 
-## Saiba Mais
+## Contact
 
-Para saber mais sobre Next.js, dê uma olhada nos seguintes recursos:
+For suggestions, questions, or support, please contact us through our website.[](https://portfoliodoprofessornerd.vercel.app/)
 
-- [Documentação do Next.js](https://nextjs.org/docs) - saiba mais sobre os recursos e a API do Next.js.
-- [Aprenda Next.js](https://nextjs.org/learn) - um tutorial interativo de Next.js.
-
-Você pode conferir o [repositório do Next.js no GitHub](https://github.com/vercel/next.js) - seu feedback e contribuições são bem-vindos!
-
-## Deploy no Vercel
-
-A maneira mais fácil de implantar seu aplicativo Next.js é usar a [Plataforma Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) dos criadores do Next.js.
-
-Confira nossa [documentação de implantação do Next.js](https://nextjs.org/docs/app/building-your-application/deploying) para mais detalhes.
+Make the most of the available resources to enhance your teaching and learning experience! 
